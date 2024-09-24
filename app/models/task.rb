@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  belongs_to :column
   validates :name, presence: true
 
   enum status: { undone: 0, done: 10 }
