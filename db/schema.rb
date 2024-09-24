@@ -10,17 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_23_130220) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_24_105610) do
   create_table "columns", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "table_id"
+    t.index ["table_id"], name: "index_columns_on_table_id"
   end
 
   create_table "tables", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_tables_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -31,6 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_23_130220) do
     t.integer "status", default: 0
     t.integer "priority", default: 0
     t.datetime "deadline"
+    t.integer "column_id"
+    t.index ["column_id"], name: "index_tasks_on_column_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_23_130220) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "columns", "tables"
+  add_foreign_key "tables", "users"
+  add_foreign_key "tasks", "columns"
 end
