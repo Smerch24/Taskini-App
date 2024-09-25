@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :tables
   resources :columns
+  resources :tasks
 
   root to: 'tables#index'
 end
