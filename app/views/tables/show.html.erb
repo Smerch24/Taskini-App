@@ -1,0 +1,7 @@
+<h1><%= @table.name %></h1>
+<div>
+  <%= link_to "Edit", edit_table_path(@table)%>
+</div>
+<div>
+  <%= button_to "Delete", table_path(@table), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>

@@ -1,0 +1,14 @@
+<h1>Edit Table</h1>
+<%= form_with model: @table, local: true do |f| %>
+  <div>
+    <h3><%= f.label :name %></h3>
+    <h3><%= f.text_field :name %></h3>
+  </div>
+  <div>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+  <div>
+    <h3><%= f.submit "Update"%></h2>
+    <h3><%= link_to "Back", tables_path %></h2>
+  </div>
+<% end %>
