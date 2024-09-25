@@ -1,0 +1,4 @@
+<h3>Create new column <%= link_to '+', new_column_path %></h3>
+<% @columns.each do |column| %>
+  <h2><%= link_to column.name, column_path(column.id) %></h2>
+<% end %>

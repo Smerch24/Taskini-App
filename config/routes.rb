@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   }
 
   resources :tables
+  resources :columns
 
   root to: 'tables#index'
 end

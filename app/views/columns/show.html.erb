@@ -1,0 +1,7 @@
+<h1><%= @column.name %></h1>
+<div>
+  <%= link_to "Edit", edit_column_path(@column)%>
+</div>
+<div>
+  <%= button_to "Delete", column_path(@column), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
