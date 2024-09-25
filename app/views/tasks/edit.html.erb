@@ -1,0 +1,15 @@
+<h1>Edit Task</h1>
+<%= form_with model: @task, local: true do |f| %>
+  <div>
+    <h3><%= f.label :name %></h3>
+    <h3><%= f.text_field :name %></h3>
+  </div>
+  <div>
+    <%= f.label :column_id, "Select Column" %>
+    <%= f.select :column_id, options_from_collection_for_select(@columns, :id, :name, @task.column_id) %>
+  </div>
+  <div>
+    <h3><%= f.submit "Update"%></h2>
+    <h3><%= link_to "Back", tasks_path %></h2>
+  </div>
+<% end %>
