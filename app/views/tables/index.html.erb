@@ -1,0 +1,4 @@
+<h3>Create new table <%= link_to '+', new_table_path %></h3>
+<% @tables.each do |table| %>
+  <h2><%= link_to table.name, table_path(table.id) %></h2>
+<% end %>

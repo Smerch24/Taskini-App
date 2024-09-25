@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
-  root to: 'controller#method'
+  resources :tables
+
+  root to: 'tables#index'
 end
