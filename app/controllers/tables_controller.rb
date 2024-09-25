@@ -1,4 +1,6 @@
 class TablesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @tables = Table.all
   end
@@ -36,10 +38,10 @@ class TablesController < ApplicationController
   def destroy
     @table = Table.find(params[:id])
     @table.destroy
-    render :index
+    redirect_to tables_path
   end
 
   def table_params
-    params.require(:tables).permit(:name, :user_id)
+    params.require(:table).permit(:name, :user_id)
   end
 end
