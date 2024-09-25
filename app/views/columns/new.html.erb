@@ -4,9 +4,8 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-  <div>
-    <%= f.hidden_field :column_id, :value => current_user.id %>
-  </div>
+  <%= f.label :table_id, "Select Table" %>
+  <%= f.select :table_id, options_from_collection_for_select(@tables, :id, :name, @column.table_id) %>
   <div>
     <%= f.submit "Create"%>
   </div>

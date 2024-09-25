@@ -6,10 +6,12 @@ class ColumnsController < ApplicationController
   end
 
   def new
+    @tables = Table.all
     @column = Column.new
   end
 
   def create
+    @tables = Table.all
     @column = Column.new(column_params)
     if @column.save
       redirect_to @column
@@ -19,10 +21,12 @@ class ColumnsController < ApplicationController
   end
 
   def edit
+    @tables = Table.all
     @column = Column.find(params[:id])
   end
 
   def update
+    @tables = Table.all
     @column = Column.find(params[:id])
     if @column.update(column_params)
       redirect_to @column
@@ -40,6 +44,8 @@ class ColumnsController < ApplicationController
     @column.destroy
     redirect_to columns_path
   end
+
+  private
 
   def column_params
     params.require(:column).permit(:name, :table_id)

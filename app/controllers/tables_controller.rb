@@ -6,10 +6,12 @@ class TablesController < ApplicationController
   end
 
   def new
+    @tables = Table.all
     @table = Table.new
   end
 
   def create
+    @tables = Table.all
     @table = Table.new(table_params)
     if @table.save
       redirect_to @table
@@ -19,10 +21,12 @@ class TablesController < ApplicationController
   end
 
   def edit
+    @tables = Table.all
     @table = Table.find(params[:id])
   end
 
   def update
+    @tables = Table.all
     @table = Table.find(params[:id])
     if @table.update(table_params)
       redirect_to @table
@@ -40,6 +44,8 @@ class TablesController < ApplicationController
     @table.destroy
     redirect_to tables_path
   end
+
+  private
 
   def table_params
     params.require(:table).permit(:name, :user_id)
