@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Columns", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+RSpec.describe 'Columns', type: :request do
+  describe 'GET /index' do
   end
 end
