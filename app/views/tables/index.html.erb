@@ -1,4 +1,21 @@
 <h3>Create new table <%= link_to '+', new_table_path %></h3>
+
 <% @tables.each do |table| %>
-  <h2><%= link_to table.name, table_path(table.id) %></h2>
+
+  <% true_columns = @columns.select { |column| column.table_id == table.id } %>
+
+  <% if true_columns.any? %>
+    <h5>Колонки в <%= table.name %>:</h5>
+    <% true_columns.each do |column| %>
+      <% true_tasks = @tasks.select { |task| task.column_id == column.id } %>
+
+      <% if true_tasks.any? %>
+        <p>Колонка: <%= column.name %> (Задача: <%= true_tasks.first.name %>)</p>
+      <% else %>
+        <p>Колонка: <%= column.name %> (нет задач)</p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>Нет колонок для этой таблицы.</p>
+  <% end %>
 <% end %>
