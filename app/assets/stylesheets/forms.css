@@ -1,0 +1,107 @@
+:root {
+  --dark: #000000;
+  --white: #ffffff;
+  --dark-green: rgb(63, 85, 64);
+  --grey: #acacac;
+  --brown: #393125;
+}
+
+header {
+  margin-left: 10px;
+  position: fixed;
+  display: flex;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #393125;
+}
+
+body {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.first,
+.second,
+.third {
+  height: 100%;
+  text-align: center;
+}
+
+.first {
+  width: 30%;
+  border-right: 1px solid #333;
+}
+
+.second {
+  width: 40%;
+}
+
+.third {
+  width: 30%;
+  border-left: 1px solid #333;
+}
+
+.sign-title {
+  font-size: 60px;
+  color: var(--dark-green);
+}
+
+.title {
+  font-size: 30px;
+}
+
+.column-title {
+  text-align: center;
+  margin-top: 16%;
+}
+
+.form {
+  display: inline-block;
+  width: 500px;
+  border: #000000, solid, 2px;
+  text-align: center;
+  margin-top: 12%;
+  background-color: var(--grey);
+}
+
+.field {
+  border-color: rgb(0, 0, 0);
+  border-radius: 10px;
+  margin: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 30px;
+  border-width: 1px;
+  font-size: larger;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn {
+  font-size: 20px;
+  width: 20%;
+  height: 40px;
+  border-radius: 12px;
+  border-width: 0px;
+  background-color: var(--dark-green);
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: var(--dark);
+
+  &:hover {
+    border-color: rgb(61, 127, 65);
+    background-color: rgb(70, 111, 72);
+  }
+}
+
+.action {
+  display: flex;
+}
