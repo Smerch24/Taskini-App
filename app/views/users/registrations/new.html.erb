@@ -1,27 +1,32 @@
-<h2>Sign up</h2>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+<div class="first">
+  <h1 class="column-title">
+    What's new?</h1>
+</div>
+<div class="second">
+  <div class="form">
+    <h2 class="sign-title">Sign up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="field-box">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "field", placeholder: "Name" %>
+      </div>
+      <div class="field-box">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "field", placeholder: "Email" %>
+      </div>
+      <div class="field-box">
+        <%= f.password_field :password, autocomplete: "new-password", class: "field", placeholder: "Password" %>
+      </div>
+      <div class="field-box">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "field", placeholder: "Confirm Password" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Sign up", class: "btn" %>
+        <%= render "users/shared/links", class: "btn"
+ %>
+      </div>
+      <%= render "users/shared/error_messages", resource: resource%>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-<%= render "users/shared/links" %>
+</div>
+<div class="third">
+  <h1 class="column-title">About Us</h1>
+</div>
