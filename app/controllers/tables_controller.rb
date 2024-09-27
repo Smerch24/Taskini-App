@@ -2,6 +2,8 @@ class TablesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @tasks = Task.all
+    @columns = Column.all
     @tables = Table.all
   end
 
