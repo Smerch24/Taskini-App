@@ -1,9 +1,10 @@
 :root {
-  --dark: #000000;
+  --dark: #100e0e;
+  --biege: #f5f5dc;
   --white: #ffffff;
   --dark-green: rgb(63, 85, 64);
   --grey: #acacac;
-  --brown: #393125;
+  --brown: #5d4037;
 }
 
 header {
@@ -15,7 +16,7 @@ header {
 html,
 body {
   height: 100%;
-  background-color: #393125;
+  background-color: var(--brown);
 }
 
 body {
@@ -34,19 +35,22 @@ body {
 
 .first {
   width: 30%;
-  border-right: 1px solid #333;
 }
 
 .second {
+  border: #000000, solid, 2px;
+  border-radius: 60px;
+  background-color: var(--biege);
+  border-color: var(--biege);
   width: 40%;
 }
 
 .third {
   width: 30%;
-  border-left: 1px solid #333;
 }
 
 .sign-title {
+  margin-bottom: 10px;
   font-size: 60px;
   color: var(--dark-green);
 }
@@ -56,6 +60,9 @@ body {
 }
 
 .column-title {
+  color: var(--dark-green);
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
   text-align: center;
   margin-top: 16%;
 }
@@ -63,21 +70,19 @@ body {
 .form {
   display: inline-block;
   width: 500px;
-  border: #000000, solid, 2px;
   text-align: center;
   margin-top: 12%;
-  background-color: var(--grey);
 }
 
 .field {
   border-color: rgb(0, 0, 0);
   border-radius: 10px;
-  margin: 8px;
+  margin: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
-  padding-right: 30px;
-  border-width: 1px;
+  padding-right: 45px;
+  border-width: 0px;
   font-size: larger;
 
   &:focus {
@@ -86,19 +91,27 @@ body {
 }
 
 .btn {
-  font-size: 20px;
-  width: 20%;
-  height: 40px;
-  border-radius: 12px;
-  border-width: 0px;
-  background-color: var(--dark-green);
-  margin-bottom: 10px;
+  background: linear-gradient(45deg, #4caf50, #34a853);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   text-decoration: none;
-  color: var(--dark);
 
   &:hover {
-    border-color: rgb(61, 127, 65);
-    background-color: rgb(70, 111, 72);
+    background: linear-gradient(45deg, #34a853, #4caf50);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   }
 }
 
