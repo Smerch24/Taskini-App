@@ -1,27 +1,10 @@
-<div class="nav">
+<h3>Tables:</h3>
+<ul class="navigation-list">
   <% @tables.each do |table| %>
-    <ul class="nav-list">
-      <li class="nav-list-point"><%= link_to table.name, table_path(table.id) %></li>
-    </ul>
+    <li class="navigation-item">
+      <%= link_to table.name, table_path(table.id), class: "btn-nav" %>
+    </li>
   <% end %>
+</ul>
+<%= link_to '+', new_table_path, class: "link create-link" %>
 </div>
-<h3>Create new table <%= link_to '+', new_table_path %></h3>
-<% true_tables = @tables.select { |table| table.id == params[:id] } %>
-<% true_tables.each do |table| %>
-  <% true_columns = @columns.select { |column| column.table_id == table.id } %>
-  <% if true_columns.any? %>
-    <div class="table-form">
-      <h1 class="table-title"><%= table.name %>
-      </h1>
-      <% true_columns.each do |column| %>
-        <% true_tasks = @tasks.select { |task| task.column_id == column.id } %>
-        <% if true_tasks.any? %>
-          <p>column: <%= column.name %> (Task: <%= true_tasks.first.name %>)</p>
-        <% else %>
-          <p>Column: <%= column.name %> (There is not tasks)</p>
-        <% end %>
-      </div>
-    <% end %>
-  <% else %>
-  <% end %>
-<% end %>
