@@ -1,0 +1,123 @@
+:root {
+  --dark: #100e0e;
+  --white: #ffffff;
+  --grey: #acacac;
+  --blue: #728cf6;
+  --dark-blue: #2d465b;
+  --red: #9e0808;
+  --dark-red: #790909;
+  --green: #2da60c;
+  --dark-green: #07630e;
+}
+.btn-nav {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: var(--grey);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var(--dark-blue);
+  }
+}
+
+.table-navigation {
+  display: flex;
+  flex-direction: row;
+}
+
+.current-table {
+  background-color: var(--blue);
+  font-weight: bold;
+  cursor: default;
+
+  &:hover {
+    background-color: var(--dark-blue);
+  }
+}
+
+.navigation-list {
+  position: absolute;
+  top: -2px;
+  left: 136px;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.navigation-item {
+  margin-right: 10px;
+}
+
+.priority {
+  font-weight: bold;
+}
+
+.link {
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.create-link {
+  background-color: var(--green);
+  margin-left: 6px;
+
+  &:hover {
+    background-color: var(--dark-green);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.delete-link {
+  background-color: var(--red);
+
+  &:hover {
+    background-color: var(--dark-red);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.edit-link {
+  background-color: var(--blue);
+  position: absolute;
+  left: 8px;
+
+  &:hover {
+    background-color: var(--dark-blue);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.button-create-table {
+  padding: 12px 24px;
+  position: absolute;
+  top: 20px;
+  left: 68px;
+}
+
+.task-text {
+  font-weight: 500;
+  font-size: 18px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.task-item:not(:last-child) {
+  margin-bottom: 60px;
+}

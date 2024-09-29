@@ -1,21 +1,11 @@
-<h3>Create new table <%= link_to '+', new_table_path %></h3>
-
-<% @tables.each do |table| %>
-
-  <% true_columns = @columns.select { |column| column.table_id == table.id } %>
-
-  <% if true_columns.any? %>
-    <h5>Колонки в <%= table.name %>:</h5>
-    <% true_columns.each do |column| %>
-      <% true_tasks = @tasks.select { |task| task.column_id == column.id } %>
-
-      <% if true_tasks.any? %>
-        <p>Колонка: <%= column.name %> (Задача: <%= true_tasks.first.name %>)</p>
-      <% else %>
-        <p>Колонка: <%= column.name %> (нет задач)</p>
-      <% end %>
+<div class="table-navigation">
+  <h3>Tables:</h3>
+  <ul class="navigation-list">
+    <% @tables.each do |other_table| %>
+      <li class="navigation-item">
+        <%= link_to other_table.name, table_path(other_table.id), class: "btn-nav" %>
+      </li>
     <% end %>
-  <% else %>
-    <p>Нет колонок для этой таблицы.</p>
-  <% end %>
-<% end %>
+  </ul>
+  <h2><%= link_to '+', new_table_path, class: "link create-link button-create-table" %></h2>
+</div>

@@ -1,4 +1,5 @@
 class TablesController < ApplicationController
+  layout 'tables_layout'
   before_action :authenticate_user!
 
   def index
@@ -38,6 +39,9 @@ class TablesController < ApplicationController
   end
 
   def show
+    @tasks = Task.all
+    @columns = Column.all
+    @tables = Table.all
     @table = Table.find(params[:id])
   end
 
