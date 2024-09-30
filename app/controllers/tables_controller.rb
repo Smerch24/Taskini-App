@@ -5,7 +5,7 @@ class TablesController < ApplicationController
   def index
     @tasks = Task.all
     @columns = Column.all
-    @tables = Table.all
+    @tables = current_user.tables
   end
 
   def new
@@ -41,7 +41,7 @@ class TablesController < ApplicationController
   def show
     @tasks = Task.all
     @columns = Column.all
-    @tables = Table.all
+    @tables = current_user.tables
     @table = Table.find(params[:id])
   end
 
