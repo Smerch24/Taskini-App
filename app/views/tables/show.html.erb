@@ -16,7 +16,9 @@
 </div>
 <% if table %>
   <div class="table-section">
-    <h2>Table: <%= table.name %>   <%= button_to "Delete", table_path(table), method: :delete, class: "link delete-link" %></h2>
+    <h2>Table: <%= table.name %></h2>
+    <span><%= link_to 'rename', edit_table_path(table), class: "link edit-link edit-table" %></span>
+    <%= button_to "Delete", table_path(table), method: :delete, class: "link delete-link" %>
     <% columns = @columns.select { |column| column.table_id == table.id } %>
     <% if columns.any? %>
       <div class="columns-section">
@@ -25,7 +27,12 @@
         <ul class="columns-list">
           <% columns.each do |column| %>
             <li class="column-item">
-              <h3>Column: <%= column.name %></h3>
+              <h3 class="column-header">
+                Column: <%= column.name %>
+                <span class="edit-button">
+                  <%= link_to 'Edit', edit_column_path(column), class: "link edit-column" %>
+                </span>
+              </h3>
               <% tasks = @tasks.select { |task| task.column_id == column.id } %>
               <% if tasks.any? %>
                 <ul class="tasks-list">
@@ -39,8 +46,7 @@
                       </span>
                       <p>Deadline:
                         <% if task.deadline %>
-                          <span class="task-text"><%= task.deadline.strftime("%Y-%m-%d %H:%M:%S")
- %></span>
+                          <span class="task-text"><%= task.deadline.strftime("%Y-%m-%d %H:%M:%S")%></span>
                         <% else %>
                           <span class="task-text"> missing </span>
                         <% end %></p>
