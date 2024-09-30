@@ -1,4 +1,5 @@
 class ColumnsController < ApplicationController
+  layout 'tables_layout'
   before_action :authenticate_user!
 
   def index
