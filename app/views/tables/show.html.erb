@@ -1,60 +1,65 @@
-<% table = @tables.find { |table| table.id == params[:id].to_i } %>
-<div class="table-navigation">
-  <h3>Tables:</h3>
-  <ul class="navigation-list">
-    <% @tables.each do |other_table| %>
-      <li class="navigation-item">
-        <% if other_table.id == table.id %>
-          <%= link_to other_table.name, table_path(other_table.id), class: "btn-nav current-table" %>
-        <% else %>
-          <%= link_to other_table.name, table_path(other_table.id), class: "btn-nav" %>
+<% if @tables.any? %>
+  <% table = @tables.find { |table| table.id == params[:id].to_i } %>
+  <% if table && table.user_id == current_user.id %>
+    <div class="table-navigation">
+      <h3>Tables:</h3>
+      <ul class="navigation-list">
+        <% @tables.each do |other_table| %>
+          <li class="navigation-item">
+            <% if other_table.id == table.id %>
+              <%= link_to other_table.name, table_path(other_table.id), class: "btn-nav current-table" %>
+            <% else %>
+              <%= link_to other_table.name, table_path(other_table.id), class: "btn-nav" %>
+            <% end %>
+          </li>
         <% end %>
-      </li>
-    <% end %>
-  </ul>
-  <h2><%= link_to '+', new_table_path, class: "link create-link button-create-table" %></h2>
-</div>
-<% if table %>
-  <div class="table-section">
-    <h2>Table: <%= table.name %></h2>
-    <span><%= link_to 'rename', edit_table_path(table), class: "link edit-link edit-table" %></span>
-    <%= button_to "Delete", table_path(table), method: :delete, class: "link delete-link" %>
-    <% columns = @columns.select { |column| column.table_id == table.id } %>
-    <% if columns.any? %>
-      <div class="columns-section">
-        <h3>Create new column <%= link_to '+', new_column_path, class: "link create-link" %></h3>
-        <h3>Columns:</h3>
-        <ul class="columns-list">
-          <% columns.each do |column| %>
-            <li class="column-item">
-              <h3 class="column-header">
-                Column: <%= column.name %>
-                <span class="edit-button">
+      </ul>
+      <h2><%= link_to '+', new_table_path, class: "link create-link button-create-table" %></h2>
+    </div>
+    
+    <div class="table-section">
+      <h2>Table: <%= table.name %></h2>
+      <span><%= link_to 'rename', edit_table_path(table), class: "link edit-link edit-table" %></span>
+      <%= button_to "Delete", table_path(table), method: :delete, class: "link delete-link" %>
+      <% columns = @columns.select { |column| column.table_id == table.id } %>
+      <% if columns.any? %>
+        <div class="columns-section">
+          <h3>Create new column <%= link_to '+', new_column_path, class: "link create-link" %></h3>
+          <h3>Columns:</h3>
+          <ul class="columns-list">
+            <% columns.each do |column| %>
+              <li class="column-item">
+                <h3 class="column-header">
+                  Column: <%= column.name %>
                   <%= link_to 'Edit', edit_column_path(column), class: "link edit-column" %>
-                </span>
-              </h3>
-              <% tasks = @tasks.select { |task| task.column_id == column.id } %>
-              <% if tasks.any? %>
-                <ul class="tasks-list">
-                  <% tasks.each do |task| %>
-                    <li class="task-item">
-                      <p>
-                        <span class="priority"><%= task.priority %></span>
-                        Task: <span class="task-text"><%= task.name %></span>
-                        <%= link_to 'Edit', edit_task_path(task), class: "link edit-link" %></p>
-                      <p>Description: <span class="task-text"><%= task.description %></p>
-                      </span>
-                      <p>Deadline:
-                        <% if task.deadline %>
-                          <span class="task-text"><%= task.deadline.strftime("%Y-%m-%d %H:%M:%S")%></span>
-                        <% else %>
-                          <span class="task-text"> missing </span>
-                        <% end %></p>
-                    </li>
-                  <% end %>
-                </ul>
-              <% end %>
-              <h3> <%= link_to 'Create new task', new_task_path, class: "link create-link"%>
+
+                    <%= button_to "Delete", column_path(column), method: :delete, class: "link delete-link" %>
+                    
+                  
+                </h3>
+                <% tasks = @tasks.select { |task| task.column_id == column.id } %>
+                <% if tasks.any? %>
+                  <ul class="tasks-list">
+                    <% tasks.each do |task| %>
+                      <li class="task-item">
+                        <p>
+                          <span class="priority"><%= task.priority %></span>
+                          Task: <span class="task-text"><%= task.name %></span>
+                          <%= link_to 'Edit', edit_task_path(task), class: "link edit-link" %>
+                        </p>
+                        <p>Description: <span class="task-text"><%= task.description %></span></p>
+                        <p>Deadline:
+                          <% if task.deadline %>
+                            <span class="task-text"><%= task.deadline.strftime("%Y-%m-%d %H:%M:%S") %></span>
+                          <% else %>
+                            <span class="task-text"> missing </span>
+                          <% end %></p>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+                <h3><%= link_to 'Create new task', new_task_path, class: "link create-link"%></h3>
+
               </li>
             <% end %>
           </ul>
@@ -64,5 +69,8 @@
       <% end %>
     </div>
   <% else %>
-    <h3>Create new table <%= link_to '+', new_table_path, class: "link create-link" %></h3>
+    <h1>У вас нет таблицы или вы пытаетесь получить доступ к чужой таблице.</h1>
   <% end %>
+<% else %>
+  <h1>У вас нет таблиц еще.</h1>
+<% end %>

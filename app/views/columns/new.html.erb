@@ -1,12 +1,13 @@
 <h1>New Column</h1>
 <%= form_with model: @column, local: true do |f| %>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :name, class: "field-text"%>
+    <%= f.text_field :name, class: "field" %>
   </div>
-  <%= f.label :table_id, "Select Table" %>
-  <%= f.select :table_id, options_from_collection_for_select(@tables, :id, :name, @column.table_id) %>
   <div>
-    <%= f.submit "Create"%>
-  </div>
-<% end %>
+    <%= f.label :table_id, "Select Table", class: "field-text" %><br>
+    <%= f.select :table_id, options_from_collection_for_select(@tables, :id, :name, @column.table_id), {}, { class: "select-field" } %>
+    <div><br>
+      <%= f.submit "Create", class: "link create-link"%>
+    </div>
+  <% end %>

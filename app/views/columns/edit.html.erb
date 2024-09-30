@@ -1,15 +1,15 @@
 <h1>Edit Column</h1>
 <%= form_with model: @column, local: true do |f| %>
   <div>
-    <h3><%= f.label :name %></h3>
-    <h3><%= f.text_field :name %></h3>
+    <h3><%= f.label :name, class: "field-text"%></h3>
+    <h3><%= f.text_field :name, class: "field" %></h3>
   </div>
   <div>
-    <%= f.label :table_id, "Select Table" %>
-    <%= f.select :table_id, options_from_collection_for_select(@tables, :id, :name, @column.table_id) %>
+    <%= f.label :table_id, "Select Table", class: "field-text"%>
+    <%= f.select :table_id, options_from_collection_for_select(@tables, :id, :name, @column.table_id), {}, {class: "select-field"} %>
   </div>
   <div>
-    <h3><%= f.submit "Update"%></h2>
-    <h3><%= link_to "Back", columns_path %></h2>
+    <h3><%= f.submit "Update", class: "link edit-link"%></h3>
+    <h3><%= link_to "Back", columns_path, class: "link back-link"%></h3>
   </div>
 <% end %>
