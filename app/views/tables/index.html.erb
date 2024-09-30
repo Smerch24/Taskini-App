@@ -1,10 +1,21 @@
 <div class="table-navigation">
   <h3>Tables:</h3>
   <ul class="navigation-list">
-    <% @tables.each do |other_table| %>
-      <li class="navigation-item">
-        <%= link_to other_table.name, table_path(other_table.id), class: "btn-nav" %>
-      </li>
+    <% @tables.each do |table| %>
+      <%= link_to table.name, table_path(table.id), class: "btn-nav" %>
+    <% end %>
+    <% if @tables.any? %>
+      <% @tables.each do |table| %>
+        <% if table.id == params[:id].to_i && table.user_id == current_user.id %>
+          <% @tables.each do |other_table| %>
+            <li class="navigation-item">
+              <%= link_to other_table.name, table_path(other_table.id), class: "btn-nav" %>
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <h1>You don't have a table yet</h1>
     <% end %>
   </ul>
   <h2><%= link_to '+', new_table_path, class: "link create-link button-create-table" %></h2>

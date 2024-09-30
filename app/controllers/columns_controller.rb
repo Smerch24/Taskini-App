@@ -1,4 +1,5 @@
 class ColumnsController < ApplicationController
+  layout 'tables_layout'
   before_action :authenticate_user!
 
   def index
@@ -6,7 +7,7 @@ class ColumnsController < ApplicationController
   end
 
   def new
-    @tables = Table.all
+    @tables = current_user.tables
     @column = Column.new
   end
 
@@ -14,14 +15,14 @@ class ColumnsController < ApplicationController
     @tables = Table.all
     @column = Column.new(column_params)
     if @column.save
-      redirect_to @column
+      redirect_to tables_path
     else
       render :new
     end
   end
 
   def edit
-    @tables = Table.all
+    @tables = current_user.tables
     @column = Column.find(params[:id])
   end
 
@@ -29,7 +30,7 @@ class ColumnsController < ApplicationController
     @tables = Table.all
     @column = Column.find(params[:id])
     if @column.update(column_params)
-      redirect_to @column
+      redirect_to tables_path
     else
       render :edit
     end
@@ -41,8 +42,9 @@ class ColumnsController < ApplicationController
 
   def destroy
     @column = Column.find(params[:id])
+    Rails.logger.debug "Deleting column: #{@column.inspect}"
     @column.destroy
-    redirect_to columns_path
+    redirect_to tables_path, notice: 'Column was successfully deleted.'
   end
 
   private

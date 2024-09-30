@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  layout 'tables_layout'
   before_action :authenticate_user!
 
   def index
@@ -14,7 +15,7 @@ class TasksController < ApplicationController
     @columns = Column.all
     @task = Task.new(task_params)
     if @task.save
-      redirect_to @task
+      redirect_to tables_path
     else
       render :new
     end
