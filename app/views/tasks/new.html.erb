@@ -2,12 +2,24 @@
 <%= form_with model: @task, local: true do |f| %>
   <div>
     <%= f.label :name, class: "field-text"%>
-    <%= f.text_field :name, class: "field" %>
+    <%= f.text_field :name, class: "field field-over" %>
   </div>
-  <%= f.label :table_id, "Select Table", class: "field-text" %><br>
-  <%= f.select :table_id, options_from_collection_for_select(@columns, :id, :name, @task.column_id), {}, { class: "select-field" } %>
   <div>
-    <%= f.submit "Create", class: "link create-link"%>
-    <h3><%= link_to "Back", tasks_path %></h3>
+    <%= f.label :description, class: "field-text"%>
+    <%= f.text_field :description, class: "field" %>
   </div>
-<% end %>
+  <div>
+    <%= f.hidden_field :status, value: @task.status || "undone" %>
+  </div>
+  <div>
+    <%= f.label :priority, "Select Priority", class: "field-text" %><br />
+    <%= f.select :priority, Task.priorities.keys.map { |priority| [priority.humanize, priority] }, {}, class: "select-field" %>
+  </div>
+  <div>
+    <div>
+      <%= f.label :column_id, "Select Column", class: "field-text" %><br>
+      <%= f.select :column_id, options_from_collection_for_select(@columns, :id, :name, @task.column_id), {}, { class: "select-field" } %>
+      <div><br>
+        <%= f.submit "Create", class: "link create-link"%>
+      </div>
+    <% end %>

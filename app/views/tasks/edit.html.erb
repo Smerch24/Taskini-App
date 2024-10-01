@@ -1,15 +1,16 @@
 <h1>Edit Task</h1>
 <%= form_with model: @task, local: true do |f| %>
   <div>
-    <h3><%= f.label :name %></h3>
-    <h3><%= f.text_field :name %></h3>
+    <h3><%= f.label :name, class: "field-text"%></h3>
+    <h3><%= f.text_field :name, class: "field" %></h3>
+  </div>
+  <%= f.select :priority, Task.priorities.keys.map { |priority| [priority.humanize, priority] }, {}, class: "select-field" %>
+  <div>
+    <%= f.label :column_id, "Select Column", class: "field-text"%>
+    <%= f.select :column_id, options_from_collection_for_select(@columns, :id, :name, @task.column_id), {}, {class: "select-field"} %>
   </div>
   <div>
-    <%= f.label :column_id, "Select Column" %>
-    <%= f.select :column_id, options_from_collection_for_select(@columns, :id, :name, @task.column_id) %>
-  </div>
-  <div>
-    <h3><%= f.submit "Update"%></h2>
-    <h3><%= link_to "Back", tasks_path %></h2>
+    <h3><%= f.submit "Update", class: "link edit-link"%></h3>
+    <h3><%= link_to "Back", tables_path, class: "link back-link"%></h3>
   </div>
 <% end %>
