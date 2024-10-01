@@ -10,6 +10,15 @@
   </head>
   <body>
     <header>
+      <h1 class="title">TASKINI</h1>
+      <% if user_signed_in? %>
+        <div class="logout-box"></div>
+        <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: "btn-logout" %>
+      <% else %>
+        <%= link_to 'Sign up', new_user_registration_path, class: "link create-link"  %>
+        <%= link_to 'Log in', new_user_session_path,class: "link create-link" %>
+      <% end %>
+      <p class="alert"><%= alert %></p>
     </header>
     <%= yield %>
   </body>

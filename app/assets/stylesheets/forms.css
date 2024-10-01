@@ -55,21 +55,20 @@ body {
   }
 }
 
-.log-in {
-  margin-bottom: 15px;
-}
-
 .btn {
-  background-color: var(--green);
-  border: none;
-  border-radius: 12px;
-  color: var(--white);
+  display: inline-block;
+  max-height: 40px;
+  width: 90px;
+  text-align: center;
   padding: 10px 10px;
   font-size: 16px;
-  font-weight: bold;
+  border-width: 0px;
+  background-color: var(--green);
+  border-radius: 24px;
+  color: var(--white);
   text-transform: uppercase;
-  margin-right: 10px;
   text-decoration: none;
+  margin-left: 5px;
 
   &:hover {
     background-color: var(--dark-green);
@@ -80,7 +79,12 @@ body {
   }
 }
 
+.log-in-btn {
+  min-width: 60px;
+}
+
 .reset-btn {
+  width: 240px;
   margin-top: -15px;
   margin-bottom: 15px;
 }
