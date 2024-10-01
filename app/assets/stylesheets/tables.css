@@ -2,6 +2,7 @@
   --dark: #100e0e;
   --white: #ffffff;
   --grey: #d5d5d5;
+  --dark-grey: #2f2f3a;
   --blue: #728cf6;
   --dark-blue: #2d465b;
   --red: #9e0808;
@@ -39,7 +40,7 @@
 
 .navigation-list {
   position: absolute;
-  top: -2px;
+  top: 116px;
   left: 136px;
   list-style-type: none;
   padding: 0;
@@ -53,6 +54,7 @@
 
 .priority {
   font-weight: bold;
+  margin-left: 30px;
 }
 
 .link {
@@ -84,8 +86,18 @@
   }
 }
 
+.column-header {
+  display: flex;
+}
+
+.inline-actions {
+  display: flex;
+  margin-left: 10px;
+}
+
 .delete-link {
   background-color: var(--red);
+  margin-left: 4px;
 
   &:hover {
     background-color: var(--dark-red);
@@ -117,15 +129,10 @@
   margin-left: 100px;
 }
 
-.delete {
-  position: absolute;
-  top: 305px;
-}
-
 .button-create-table {
   padding: 12px 24px;
   position: absolute;
-  top: 20px;
+  top: 138px;
   left: 68px;
 }
 
@@ -153,9 +160,12 @@
 }
 
 .task-text {
-  font-weight: 500;
   font-size: 18px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.task-box {
+  margin-left: 30px;
 }
 
 .task-item:not(:last-child) {
@@ -166,6 +176,7 @@
   border-radius: 8px;
   padding: 8px;
   border-width: 1px;
+  margin-bottom: 10px;
 }
 
 .select-field {
@@ -180,4 +191,38 @@
 .field-text {
   font-size: 22px;
   margin-right: 8px;
+}
+
+.field-over {
+  margin-left: 50px;
+}
+
+header {
+  margin: 12px;
+}
+
+.btn-logout {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 0px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 30px;
+  text-transform: uppercase;
+  border-width: 1px;
+
+  &:hover {
+    background-color: var(--dark-grey);
+  }
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark-blue);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
 }
