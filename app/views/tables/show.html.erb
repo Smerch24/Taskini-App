@@ -20,8 +20,8 @@
     </div>
     
     <div class="table-section">
-      <h2>Table: <%= table.name %></h2>
-      <span><%= link_to 'rename', edit_table_path(table), class: "link edit-link edit-table" %></span>
+      <h2>Table: <%= link_to table.name, edit_table_path(table) %></h2>
+      
       <%= button_to "Delete", table_path(table), method: :delete, class: "link delete-link" %>
     
       <% columns = @columns.select { |column| column.table_id == table.id } %>
