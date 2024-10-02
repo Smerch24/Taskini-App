@@ -9,11 +9,17 @@
     <%= f.text_field :description, class: "field" %>
   </div>
   <div>
-    <%= f.hidden_field :status, value: @task.status || "undone" %>
+    <div>
+      <%= f.label :deadline, class: "field-text"%>
+      <%= f.datetime_field :deadline, class: "field field-deadline" %>
+    </div>
   </div>
   <div>
     <%= f.label :priority, "Select Priority", class: "field-text" %><br />
     <%= f.select :priority, Task.priorities.keys.map { |priority| [priority.humanize, priority] }, {}, class: "select-field" %>
+  </div>
+  <div>
+    <%= f.hidden_field :status, value: @task.status || "undone" %>
   </div>
   <div>
     <div>

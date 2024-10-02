@@ -1,12 +1,11 @@
 <% if @tables.any? %>
-  <!-- Находим таблицу текущего пользователя по ID -->
   <% table = @tables.find { |table| table.id == params[:id].to_i && table.user_id == current_user.id } %>
   <% if table %>
     <div class="table-navigation">
       <h3>Tables:</h3>
       <ul class="navigation-list">
         <% @tables.each do |other_table| %>
-          <% if other_table.user_id == current_user.id %> <!-- Отображаем только таблицы текущего пользователя -->
+          <% if other_table.user_id == current_user.id %> 
             <li class="navigation-item">
               <% if other_table.id == table.id %>
                 <%= link_to other_table.name, table_path(other_table.id), class: "btn-nav current-table" %>
@@ -24,8 +23,7 @@
       <h2>Table: <%= table.name %></h2>
       <span><%= link_to 'rename', edit_table_path(table), class: "link edit-link edit-table" %></span>
       <%= button_to "Delete", table_path(table), method: :delete, class: "link delete-link" %>
-      
-      <!-- Фильтруем колонки по таблице -->
+    
       <% columns = @columns.select { |column| column.table_id == table.id } %>
       <% if columns.any? %>
         <div class="columns-section">
@@ -41,8 +39,6 @@
                     <%= button_to "Delete", column_path(column), method: :delete, class: "link delete-link" %>
                   </div>
                 </h3>
-                
-                <!-- Фильтруем задачи по колонкам и таблицам текущего пользователя -->
                 <% tasks = @tasks.select { |task| task.column_id == column.id && task.column.table.user_id == current_user.id } %>
                 <% if tasks.any? %>
                   <ul class="tasks-list">
@@ -60,7 +56,11 @@
                           <p></p>
                         <% end %>
                         <p>
-                          <span class="task-box">Deadline: <%= task.deadline.present? ? task.deadline.strftime("%Y-%m-%d %H:%M:%S") : 'missing' %></span>
+                          <% if (task.deadline.past?) %>
+                            <span class="task-box">Deadline:<span class="task-past"> <%= task.deadline.strftime("%Y-%m-%d %H:%M:%S") %> - This time is over</span></span>
+                            <% else %>
+                            <span class="task-box">Deadline: <%= task.deadline %></span>
+                          <% end %>
                         </p>
                       </li>
                     <% end %>

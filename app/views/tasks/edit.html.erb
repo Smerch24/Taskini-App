@@ -4,6 +4,10 @@
     <h3><%= f.label :name, class: "field-text"%></h3>
     <h3><%= f.text_field :name, class: "field" %></h3>
   </div>
+  <div>
+    <%= f.label :deadline, class: "field-text"%>
+    <%= f.datetime_field :deadline, class: "field field-deadline" %>
+  </div>
   <%= f.select :priority, Task.priorities.keys.map { |priority| [priority.humanize, priority] }, {}, class: "select-field" %>
   <div>
     <%= f.label :column_id, "Select Column", class: "field-text"%>
