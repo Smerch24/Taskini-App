@@ -56,14 +56,17 @@
                           <p></p>
                         <% end %>
                         <p>
-                          <% if (task.deadline.past?) %>
-                            <span class="task-box">Deadline:<span class="task-past"> <%= task.deadline.strftime("%Y-%m-%d %H:%M:%S") %> - This time is over</span></span>
+                          <% if (task.deadline && task.deadline.past?) %>
+                            <span class="task-box">Deadline:<span class="task-past"> <%= task.deadline.strftime("%d/%m/%Y, %H:%M:%S") %> - This time is over</span></span>
+                          
+                            <% elsif (task.deadline.present?) %>
+                              <span class="task-box">Deadline: <%= task.deadline.strftime("%d/%m/%Y, %H:%M:%S") %></span>
                             <% else %>
-                            <span class="task-box">Deadline: <%= task.deadline %></span>
-                          <% end %>
+                                <span class="task-box">Deadline: missing</span>
+                              <% end %>
+                            <% end %>
                         </p>
                       </li>
-                    <% end %>
                   </ul>
                 <% end %>
                 <h3><%= link_to 'Create new task', new_task_path, class: "link create-link" %></h3>
